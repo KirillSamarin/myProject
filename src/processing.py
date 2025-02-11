@@ -7,10 +7,10 @@ def filter_by_state(dicts, state="EXECUTED"):
             dicts_to_return.append(elem)
     return dicts_to_return
 
-def sort_by_date(dicts, order_sort="down"):
-    """Принимает список словарей в параметр dicts, после чего возвращает его, отсортировав по дате. Значение параметра order_sort показывает
-    порядок сортировки: down - по убыванию, up - по возрастанию"""
-    if order_sort=="down":
+def sort_by_date(dicts, reverse=True):
+    """Принимает список словарей в параметр dicts, после чего возвращает его, отсортировав по дате. Значение параметра
+    reverse показывает порядок сортировки: True - по убыванию, False - по возрастанию"""
+    if reverse:
         return sorted(dicts, key=lambda elem: elem["date"], reverse=True)
-    if order_sort=="up":
+    else:
         return sorted(dicts, key=lambda elem: elem["date"])
