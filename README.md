@@ -47,18 +47,7 @@ sort_by_date([{'id': 41428829, 'state': 'EXECUTED', 'date': '2019-07-03T18:35:29
 {'id': 615064591, 'state': 'CANCELED', 'date': '2018-10-14T08:21:33.419441'}, 
 {'id': 41428829, 'state': 'EXECUTED', 'date': '2019-07-03T18:35:29.512364'}]
 
-Все функции работают исправно, покрытие тестами составляет 100 %
-Name                       Stmts   Miss  Cover
-----------------------------------------------
-src\__init__.py                0      0   100%
-src\masks.py                  15      0   100%
-src\processing.py             11      0   100%
-src\widget.py                 14      0   100%
-tests\__init__.py              0      0   100%
-tests\conftest.py             31      0   100%
-tests\test_masks.py           13      0   100%
-tests\test_processing.py      11      0   100%
-tests\test_widget.py          10      0   100%
-----------------------------------------------
-TOTAL                        105      0   100%
+Тесты
+
+Функции проходят все тесты успешно, покрытие кода составляет 100%, подтверждение и дополнительная информация в index.html в папке htmlcov
 
