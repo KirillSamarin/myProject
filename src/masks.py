@@ -1,16 +1,24 @@
-def get_mask_card_number(card_number: int) -> str:
+from re import sub
+
+def get_mask_card_number(card_number: str) -> str:
     """Маскирует номер карты"""
-    card_number = list(str(card_number))
-    for index in range(6, 12):
-        card_number[index] = "*"
-    card_number.insert(4, " ")
-    card_number.insert(9, " ")
-    card_number.insert(14, " ")
-    card_number = "".join(card_number)
-    return card_number
+    if not card_number:
+        return ""
+
+    if len(card_number) <= 10:
+        masked_part_len = max(0, len(card_number) - 4)
+        masked_part = "*" * masked_part_len
+        masked_card_number = masked_part + card_number[-4:]
+    else:
+        masked_part = "*" * len(card_number[6:-4])
+        masked_card_number = card_number[:6] + masked_part + card_number[-4:]
+
+    formatted_card_number = sub("(.{4})", r"\1 ", masked_card_number)
+    return formatted_card_number.strip()
 
 
-def get_mask_account(account_number: int) -> str:
+def get_mask_account(account_number: str) -> str:
     """Маскирует номер счета"""
-    return f"**{str(account_number)[-4:]}"
+    return f"**{account_number[-4:]}"
 
+print(get_mask_account(""))
