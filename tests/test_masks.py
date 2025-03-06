@@ -8,6 +8,7 @@ def test_get_mask_card_number(number, number_zero, number_nine, short_number):
     assert get_mask_card_number(short_number) == "563"
     assert get_mask_card_number("") == ""
 
+
 def test_get_mask_account(number, number_zero, number_nine, short_number):
     assert get_mask_account(number) == "**5446"
     assert get_mask_account(number_zero) == "**0000"

@@ -1,5 +1,6 @@
 from re import sub
 
+
 def get_mask_card_number(card_number: str) -> str:
     """Маскирует номер карты"""
     if not card_number:
