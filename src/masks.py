@@ -1,5 +1,6 @@
 from re import sub
 
+
 def get_mask_card_number(card_number: str) -> str:
     """Маскирует номер карты"""
     if not card_number:
@@ -20,5 +21,3 @@ def get_mask_card_number(card_number: str) -> str:
 def get_mask_account(account_number: str) -> str:
     """Маскирует номер счета"""
     return f"**{account_number[-4:]}"
-
-print(get_mask_account(""))
