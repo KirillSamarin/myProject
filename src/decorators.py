@@ -1,4 +1,6 @@
 def log(filename=""):
+    """логирует функцию в файл, указанном в параметре filename,
+    если этот параметр пуст, то фукнция логируется в консоль"""
     def decorator(function):
         def wrapper(*args, **kwargs):
             try:
