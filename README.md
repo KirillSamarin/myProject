@@ -112,6 +112,26 @@ card_number = card_number_generator(1, 5)
 
 next(card_number) возвращает: "0000 0000 0000 0001"
 
+decorators.py
+
+декоратора log логирует функцию в консоль либо в файл:
+function ok - успешное выполнение
+function error: имя ошибки Inputs: (), {} - ошибка при выполнении, где имя ошибки - исключение, которое вызвало ошибку(TypeError, NameError и т.д)
+
+Пример
+
+@log()
+def add_numbers(a, b):
+    return a + b
+add_numbers(1, 2)
+возвращает: "add_numbers ok"
+
+@log("logs")
+def add_numbers(a, b):
+    return a + b
+add_numbers(1, 2)
+В файле: "add_numbers ok\n"(перенос строки для корректного вида строк на экране)
+
 Тесты
 
 Функции проходят все тесты успешно, покрытие кода составляет 100%, подтверждение и дополнительная информация в index.html в папке htmlcov
