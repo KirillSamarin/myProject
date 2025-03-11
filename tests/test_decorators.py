@@ -7,7 +7,7 @@ def test_log(capsys):
         return a + b
     add_numbers(1, 2)
     captured = capsys.readouterr()
-    assert captured.out == "add_numbers ok\n"
+    assert captured.out == "3\nadd_numbers ok\n"
 
     @log()
     def add_numbers(a, b):

@@ -4,8 +4,8 @@ def log(filename=""):
     def decorator(function):
         def wrapper(*args, **kwargs):
             try:
-                function(*args, **kwargs)
-                message = f"{function.__name__} ok"
+                result = function(*args, **kwargs)
+                message = f"{result}\n{function.__name__} ok"
             except Exception as e:
                 message = f"{function.__name__} error: {type(e).__name__}. Inputs: {args}, {kwargs}"
 
