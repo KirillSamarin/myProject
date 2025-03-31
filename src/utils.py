@@ -2,7 +2,7 @@ import json
 import logging
 
 logger = logging.getLogger(__name__)
-file_handler = logging.FileHandler("..\\logs\\utils.log", "w", encoding="utf-8")
+file_handler = logging.FileHandler("..\\logs\\utils.log", "a", encoding="utf-8")
 file_formatter = logging.Formatter("%(asctime)s %(filename)s %(levelname)s: %(message)s")
 file_handler.setFormatter(file_formatter)
 logger.addHandler(file_handler)
@@ -20,6 +20,3 @@ def json_read(path: str):
     except Exception as e:
         logger.error(f"Произошла ошибка {e}")
         return []
-
-
-json_read(".\\data\\operations.json")

@@ -1,4 +1,12 @@
 import pytest
+from unittest.mock import patch
+
+
+@pytest.fixture(autouse=True)
+def disable_logging():
+    """Отключает логирование во время тестов"""
+    with patch('logging.FileHandler'), patch('logging.getLogger'):
+        yield
 
 
 @pytest.fixture
