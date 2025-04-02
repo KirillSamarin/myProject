@@ -2,6 +2,8 @@ import pandas as pd
 
 
 def dict_csv(path: str):
+    """принимает в качестве аргумента путь к файлу в формате csv,
+    возвращает список словарей в формате стлолбец: строка"""
     csv_dicts = []
     with open(path, encoding="utf-8") as file:
         reader = pd.read_csv(file, delimiter=";")
@@ -11,6 +13,8 @@ def dict_csv(path: str):
 
 
 def dict_excel(path: str):
+    """принимает в качестве аргумента путь к файлу excel,
+    возвращает список словарей в формате стлолбец: строка"""
     xlsx_dicts = []
     df = pd.read_excel(path, engine='openpyxl')
     for line in range(df.shape[0]):
