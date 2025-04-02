@@ -188,6 +188,12 @@ retun_amount_rub({
 
 Возвращает: 31957.58
 
+reading_tables.py
+
+dict_csv("..\data\\transactions.csv") - указываем путь к файлу в качества аргумента
+Возвращает: [{'id': np.float64(650703.0), 'state': 'EXECUTED', 'date': '2023-09-05T11:30:32Z', 'amount': np.float64(16210.0), 'currency_name': 'Sol', 'currency_code': 'PEN', 'from': 'Счет 58803664561298323391', 'to': 'Счет 39745660563456619397', 'description': 'Перевод организации'}, {'id': np.float64(3598919.0), 'state': 'EXECUTED', 'date': '2020-12-06T23:00:58Z', 'amount': np.float64(29740.0), 'currency_name': 'Peso', 'currency_code': 'COP', 'from': 'Discover 3172601889670065', 'to': 'Discover 0720428384694643', 'description': 'Перевод с карты на карту'}...]
+Аналогично и с функцией dict_excel()
+
 Тесты
 
 Функции проходят все тесты успешно, покрытие кода составляет 100%, подтверждение и дополнительная информация в index.html в папке htmlcov
