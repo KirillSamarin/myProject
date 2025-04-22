@@ -13,8 +13,13 @@ headers = {
 
 def return_amount_rub(transaction: dict) -> float:
     """Получает на вход транзакцию в виде словаря, после чего возвращает ее сумму в рублях"""
-    currency = transaction["operationAmount"]["currency"]["code"]
-    amount = transaction["operationAmount"]["amount"]
+    if "operationAmount" in transaction.keys():
+        currency = transaction["operationAmount"]["currency"]["code"]
+        amount = transaction["operationAmount"]["amount"]
+    else:
+        currency = transaction["currency_code"]
+        amount = transaction["amount"]
+
 
     if currency == "RUB":
         return amount

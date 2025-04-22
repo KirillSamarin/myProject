@@ -1,15 +1,14 @@
 from typing import Iterator, Generator
 
-
 def filter_by_currency(transactions: list[dict], currency: str) -> Iterator[dict]:
-    """Принимает список трзнакций и возвращает их те, которые производились с определенной валютой"""
-    if not transactions:
-        yield "Список не должен быть пустым"
+    """Возвращает транзакции, которые производились с указанной валютой."""
     for transaction in transactions:
-        if transaction["operationAmount"]["currency"]["code"] == currency:
-            yield transaction
+        if "operationAmount" in transaction.keys():
+            if transaction["operationAmount"]["currency"]["code"] == currency:
+                yield transaction
         else:
-            yield "Транзакций с этой валютой нет в списке"
+            if transaction["currency_code"] == currency:
+                yield transaction
 
 
 def transaction_descriptions(transactions: list[dict]) -> Iterator[str]:
