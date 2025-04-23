@@ -1,81 +1,8 @@
-import pytest
-from unittest.mock import patch
+from src.dicts_sort import filter_dicts, dicts_by_categories
 
 
-@pytest.fixture(autouse=True)
-def disable_logging():
-    """Отключает логирование во время тестов"""
-    with patch('logging.FileHandler'), patch('logging.getLogger'):
-        yield
-
-
-@pytest.fixture
-def number():
-    return "68537238237002905446"
-
-
-@pytest.fixture
-def number_zero():
-    return "000000000000000000"
-
-
-@pytest.fixture
-def number_nine():
-    return "9999999999999999999"
-
-
-@pytest.fixture
-def short_number():
-    return "563"
-
-
-@pytest.fixture
-def text():
-    return "aaaaaa"
-
-
-@pytest.fixture
-def date():
-    return "2024-03-11T02:26:18.671407"
-
-
-@pytest.fixture
-def no_state():
-    return [{'id': 41428829, 'state': 'EXECUTED', 'date': '2019-07-03T18:35:29.512364'},
-            {'id': 939719570, 'state': 'EXECUTED', 'date': '2018-06-30T02:08:58.425572'}]
-
-
-@pytest.fixture
-def same_dates():
-    return [
-        {'id': 41428829, 'state': 'EXECUTED', 'date': '2018-06-30T02:08:58.425572'},
-        {'id': 939719570, 'state': 'EXECUTED', 'date': '2018-06-30T02:08:58.425572'},
-        {'id': 594226727, 'state': 'CANCELED', 'date': '2018-06-30T02:08:58.425572'},
-        {'id': 615064591, 'state': 'CANCELED', 'date': '2018-06-30T02:08:58.425572'}
-    ]
-
-
-@pytest.fixture
-def incorrect_dates():
-    return [
-        {'id': 41428829, 'state': 'EXECUTED', 'date': 'hsgia'},
-        {'id': 939719570, 'state': 'EXECUTED', 'date': 'kjsd'},
-        {'id': 594226727, 'state': 'CANCELED', 'date': 'sjhd'},
-        {'id': 615064591, 'state': 'CANCELED', 'date': ''}
-    ]
-
-
-@pytest.fixture
-def dates():
-    return [{'id': 41428829, 'state': 'EXECUTED', 'date': '2019-07-03T18:35:29.512364'},
-            {'id': 939719570, 'state': 'EXECUTED', 'date': '2018-06-30T02:08:58.425572'},
-            {'id': 594226727, 'state': 'CANCELED', 'date': '2018-09-12T21:27:25.241689'},
-            {'id': 615064591, 'state': 'CANCELED', 'date': '2018-10-14T08:21:33.419441'}]
-
-
-@pytest.fixture
-def transactions():
-    return [
+def test_filter_dicts(transactions):
+    assert filter_dicts(transactions, "перевод") == [
         {
             "id": 939719570,
             "state": "EXECUTED",
@@ -152,3 +79,57 @@ def transactions():
             "to": "Счет 14211924144426031657"
         }
     ]
+
+    assert filter_dicts(transactions, "счет") == [
+        {
+            'date': '2019-04-04T23:20:05.206878',
+            'description': 'Перевод со счета на счет',
+            'from': 'Счет 19708645243227258542',
+            'id': 142264268,
+            'operationAmount': {
+                'amount': '79114.93',
+                'currency': {'code': 'USD', 'name': 'USD'}
+            },
+            'state': 'EXECUTED',
+            'to': 'Счет 75651667383060284188'
+        },
+        {
+            'date': '2019-03-23T01:09:46.296404',
+            'description': 'Перевод со счета на счет',
+            'from': 'Счет 44812258784861134719',
+            'id': 873106923,
+            'operationAmount': {
+                'amount': '43318.34',
+                'currency': {'code': 'RUB', 'name': 'руб.'}
+            },
+            'state': 'EXECUTED',
+            'to': 'Счет 74489636417521191160'
+        }
+    ]
+
+    assert filter_dicts(transactions, "карты") == [
+        {
+            'date': '2018-08-19T04:27:37.904916',
+            'description': 'Перевод с карты на карту',
+            'from': 'Visa Classic 6831982476737658',
+            'id': 895315941,
+            'operationAmount': {
+                'amount': '56883.54',
+                'currency': {'code': 'USD', 'name': 'USD'}
+            },
+            'state': 'EXECUTED',
+            'to': 'Visa Platinum 8990922113665229'
+        }
+    ]
+
+
+def test_dicts_by_categories(transactions):
+    assert dicts_by_categories(
+        transactions,
+        ["перевод с карты на карту", "перевод со счета на счет"]
+    ) == {'перевод с карты на карту': 1, 'перевод со счета на счет': 2}
+
+    assert dicts_by_categories(
+        transactions,
+        ["перевод организации"]
+    ) == {'перевод организации': 2}

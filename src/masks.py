@@ -1,4 +1,12 @@
 from re import sub
+"""import logging
+
+logger = logging.getLogger(__name__)
+file_handler = logging.FileHandler("..\\logs\\masks.log", "a", encoding="utf-8")
+file_formatter = logging.Formatter("%(asctime)s %(filename)s %(levelname)s: %(message)s")
+file_handler.setFormatter(file_formatter)
+logger.addHandler(file_handler)
+logger.setLevel("INFO")"""
 
 
 def get_mask_card_number(card_number: str) -> str:

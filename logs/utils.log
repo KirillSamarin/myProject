@@ -1,0 +1,7 @@
+
+2025-03-31 15:22:24,771 utils.py INFO: функция json_read вызвана
+2025-03-31 15:22:24,772 utils.py INFO: успешное выполнение функции
+2025-03-31 15:22:24,773 utils.py INFO: функция json_read вызвана
+2025-03-31 15:22:24,774 utils.py ERROR: Произошла ошибка the JSON object must be str, bytes or bytearray, not MagicMock
+2025-03-31 15:22:24,776 utils.py INFO: функция json_read вызвана
+2025-03-31 15:22:24,776 utils.py ERROR: Произошла ошибка Expecting value: line 1 column 1 (char 0)
